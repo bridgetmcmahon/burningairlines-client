@@ -25,6 +25,8 @@ class FlightsForm extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
+    this.props.onSubmit( this.state.origin, this.state.destination );
+    this.setState({ origin: '', destination: '' });
   }
 
   render() {
@@ -62,6 +64,10 @@ class Flights extends Component {
       ]
     }
   }
+
+  // Fetch planes function
+  // Needs two queries - origin and destination
+  // Axios GET request
 
   render() {
     return (

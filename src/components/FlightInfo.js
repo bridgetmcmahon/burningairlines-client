@@ -8,7 +8,7 @@ class FlightInfo extends Component {
       <div>
         <h1>Flight Information</h1>
           <p>
-          
+
           </p>
         <Link to="/">Back to Home</Link>
       </div>
