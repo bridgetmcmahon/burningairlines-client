@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 
 class SignInForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+
+    }
+  }
+
   render() {
     return (
-      <div>
+      <div className="container">
         <form>
           <input type="text" placeholder="username" />
           <input type="password" placeholder="password" />
@@ -13,3 +20,5 @@ class SignInForm extends Component {
     );
   }
 }
+
+export default SignInForm;

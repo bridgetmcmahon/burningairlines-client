@@ -5,7 +5,7 @@ import Home from './Home';
 class FlightInfo extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Flight Information</h1>
           <p>
 

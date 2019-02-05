@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class AirplanesAdmin extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Burning Airlines</h1>
         <h2>Airplanes - Admin</h2>
 
