@@ -6,7 +6,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 code {
@@ -43,4 +42,8 @@ nav {
 .form * {
   display: block;
   margin-bottom: 8px;
+}
+
+.booking {
+  margin: 10px 0;
 }
