@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css'
 import Navigation from './Navigation';
-
+import BookingForm from './BookingForm';
 
 class FlightInfo extends Component {
   constructor(props) {
@@ -71,6 +71,8 @@ class FlightInfo extends Component {
             </p>
 
             <Reservation data={ this.state }/>
+
+            <BookingForm />
         </div>
       </div>
     );
