@@ -10,6 +10,8 @@ class FlightInfo extends Component {
       flight: [],
       planeID: 0,
       airplane: {},
+      totalRows: [],
+      totalCols: [],
     }
   }
 
@@ -26,11 +28,28 @@ class FlightInfo extends Component {
 
       let AIRPLANE_URL = `http://localhost:4000/airplanes/${ this.state.planeID }.json`
 
-      axios.get(AIRPLANE_URL).then( (airplaneResults) => {
+      axios.get(AIRPLANE_URL).then( (results) => {
+
+        let plane = results.data;
+        let rowArray = new Array(plane.rows).fill(null);
+        let colArray = new Array(plane.columns).fill(null);
+
+        for (var i = 0; i < rowArray.length; i++) {
+          rowArray[i] = i + 1;
+        }
+
+        for (var i = 0; i < colArray.length; i++) {
+          colArray[i] = i + 1;
+        }
+
+        console.log(rowArray, colArray);
+
         this.setState({
-          airplane: airplaneResults.data
+          airplane: results.data,
+          totalRows: rowArray,
+          totalCols: colArray,
         });
-        console.log(this.state);
+        // console.log(this.state);
       });
     });
   }
@@ -51,10 +70,31 @@ class FlightInfo extends Component {
           <p>
             Destination: { this.state.flight.destination }
           </p>
+
+          <div>
+            { this.state.totalRows.map( (rowNo) =>
+              <Row />
+            )}
+          </div>
+
         <Link to="/">Back to Home</Link>
+      </div>
+
+
+
+    );
+  }
+}
+
+class Row extends Component {
+  render() {
+    return (
+      <div>
+        Seat
       </div>
     );
   }
 }
+
 
 export default FlightInfo;
