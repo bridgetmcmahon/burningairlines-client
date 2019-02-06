@@ -32,10 +32,6 @@ class FlightsForm extends Component {
     this.setState({ origin: '', destination: '' });
   }
 
-  // fetchFlights function
-    // takes 2 arguments - origin query, destination query
-    //
-
   render() {
     return (
       <div>
@@ -54,7 +50,13 @@ class FlightsResults extends Component {
   render() {
     return (
       <div>
-        { this.props.flights.map( (flight) => <p key={ flight.id }>{ flight.date }, { flight.number }, { flight.origin } to { flight.destination }</p> )}
+        { this.props.flights.map( (flight) =>
+          <p key={ flight.id }>
+            Date: { flight.date },
+            Flight Number: <Link to={`/flight/${ flight.id }`}>{ flight.number }</Link>,
+            From { flight.origin } to { flight.destination }
+          </p>
+        )}
       </div>
     );
   }
@@ -76,9 +78,11 @@ class Flights extends Component {
       for (var i = 0; i < results.data.length; i++) {
         let currentFlight = results.data[i]
         if (currentFlight.origin === origin && currentFlight.destination === destination) {
-          this.setState({ flights: [...this.state.flights, currentFlight] });
+          flightsMatch.push(currentFlight);
         }
       }
+      this.setState({ flights: flightsMatch });
+
     });
   }
 
