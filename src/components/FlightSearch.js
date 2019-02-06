@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Home from './Home';
 import axios from 'axios';
+import Navigation from './Navigation';
 
-const SERVER_URL = "http://localhost:4000/flights.json"
+const SERVER_URL = "http://localhost:3000/flights.json"
 
 class FlightsForm extends Component {
   constructor() {
@@ -36,9 +37,12 @@ class FlightsForm extends Component {
     return (
       <div>
         <h2>Search For A Flight:</h2>
-        <form onSubmit={ this._handleSubmit }>
-          <input type="text" placeholder="from" required onInput={ this._handleInputOrigin } />
-          <input type="text" placeholder="to" required onInput={ this._handleInputDestination } />
+        <form onSubmit={ this._handleSubmit } className="form">
+          <label>From:</label>
+          <input type="text" placeholder="JFK" required onInput={ this._handleInputOrigin } />
+
+          <label>To:</label>
+          <input type="text" placeholder="SFO" required onInput={ this._handleInputDestination } />
           <input type="submit" value="Search" />
         </form>
       </div>
@@ -88,10 +92,12 @@ class Flights extends Component {
 
   render() {
     return (
-      <div className="container">
-        <FlightsForm onSubmit={ this.fetchFlights }/>
-        <FlightsResults flights={ this.state.flights }/>
-        <Link to="/">Back to Home</Link>
+      <div>
+        <Navigation />
+        <div className="container">
+          <FlightsForm onSubmit={ this.fetchFlights }/>
+          <FlightsResults flights={ this.state.flights }/>
+        </div>
       </div>
     )
   }

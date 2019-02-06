@@ -11,8 +11,10 @@ class SignInForm extends Component {
   render() {
     return (
       <div className="container">
-        <form>
+        <form className="form">
+          <label>Username:</label>
           <input type="text" placeholder="username" />
+          <label>Password:</label>
           <input type="password" placeholder="password" />
           <input type="submit" value="Sign In" />
         </form>
