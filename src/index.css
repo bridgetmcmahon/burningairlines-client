@@ -22,7 +22,7 @@ code {
 .navigation {
   background-color: black;
   color: white;
-  line-height: 80px;
+  line-height: 60px;
 }
 
 nav {
@@ -38,4 +38,9 @@ nav {
 .navigation a {
   color: white;
   text-decoration: none;
+}
+
+.form * {
+  display: block;
+  margin-bottom: 8px;
 }

@@ -37,9 +37,12 @@ class FlightsForm extends Component {
     return (
       <div>
         <h2>Search For A Flight:</h2>
-        <form onSubmit={ this._handleSubmit }>
-          <input type="text" placeholder="from" required onInput={ this._handleInputOrigin } />
-          <input type="text" placeholder="to" required onInput={ this._handleInputDestination } />
+        <form onSubmit={ this._handleSubmit } className="form">
+          <label>From:</label>
+          <input type="text" placeholder="JFK" required onInput={ this._handleInputOrigin } />
+
+          <label>To:</label>
+          <input type="text" placeholder="SFO" required onInput={ this._handleInputDestination } />
           <input type="submit" value="Search" />
         </form>
       </div>
