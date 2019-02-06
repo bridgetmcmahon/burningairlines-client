@@ -15,7 +15,7 @@ class AirplanesAdmin extends Component {
           <input type="submit" value="Add Airplane" />
         </form>
 
-        <Link to="/">Back to Home</Link>
+        <Link to="/">Back to Home!</Link>
       </div>
     )
   }
