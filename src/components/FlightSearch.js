@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Home from './Home';
 import axios from 'axios';
 
-const SERVER_URL = "http://localhost:4000/flights.json"
+const SERVER_URL = "http://localhost:3000/flights.json"
 
 class FlightsForm extends Component {
   constructor() {
