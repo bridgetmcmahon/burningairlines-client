@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Home from './Home';
+import axios from 'axios';
+
+const SERVER_URL = "http://localhost:4000/flights.json"
 
 class FlightsForm extends Component {
   constructor() {
@@ -51,7 +54,7 @@ class FlightsResults extends Component {
   render() {
     return (
       <div>
-        { this.props.flightsSearched.map( (flight) => <p key={ flight.id }>{ flight.date }, { flight.number }, { flight.origin } to { flight.destination }</p> )}
+        { this.props.flights.map( (flight) => <p key={ flight.id }>{ flight.date }, { flight.number }, { flight.origin } to { flight.destination }</p> )}
       </div>
     );
   }
@@ -61,35 +64,29 @@ class Flights extends Component {
   constructor() {
     super();
     this.state = {
-      flights: [
-        {id: 1, number: 23, date: "02/02/2019", origin: "SYD", destination: "BNE", airplane: 747},
-        {id: 2, number: 412, date: "03/02/2019", origin: "SYD", destination: "MEL", airplane: 757},
-        {id: 3, number: 19, date: "04/02/2019", origin: "MEL", destination: "SYD", airplane: 747},
-      ],
-      flightsSearched: [],
+      flights: [],
     }
-    this.showFlights = this.showFlights.bind(this);
+    this.fetchFlights = this.fetchFlights.bind(this);
   }
 
-  // Fetch planes function
-  // Needs two queries - origin and destination
-  // Axios GET request
+  fetchFlights(origin, destination) {
+    axios.get(SERVER_URL).then( (results) => {
+      let flightsMatch = [];
 
-  showFlights(origin, destination) {
-    for (var i = 0; i < this.state.flights.length; i++) {
-      let currentFlight = this.state.flights[i];
-      console.log(currentFlight);
-      if (currentFlight.origin === origin && currentFlight.destination === destination) {
-        this.setState({ flightsSearched: [currentFlight, ...this.state.flightsSearched] });
+      for (var i = 0; i < results.data.length; i++) {
+        let currentFlight = results.data[i]
+        if (currentFlight.origin === origin && currentFlight.destination === destination) {
+          this.setState({ flights: [...this.state.flights, currentFlight] });
+        }
       }
-    }
+    });
   }
 
   render() {
     return (
       <div className="container">
-        <FlightsForm onSubmit={ this.showFlights }/>
-        <FlightsResults flightsSearched={ this.state.flightsSearched }/>
+        <FlightsForm onSubmit={ this.fetchFlights }/>
+        <FlightsResults flights={ this.state.flights }/>
         <Link to="/">Back to Home</Link>
       </div>
     )
