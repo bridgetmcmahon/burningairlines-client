@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css'
+import Navigation from './Navigation';
 
 
 class FlightInfo extends Component {
@@ -52,24 +53,25 @@ class FlightInfo extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Flight Information</h1>
-          <p>
-            Flight Number: { this.state.flight.number }
-          </p>
-          <p>
-            Date: { this.state.flight.date }
-          </p>
-          <p>
-            Origin: { this.state.flight.origin }
-          </p>
-          <p>
-            Destination: { this.state.flight.destination }
-          </p>
+      <div>
+        <Navigation />
+        <div className="container">
+          <h1>Flight Information</h1>
+            <p>
+              Flight Number: { this.state.flight.number }
+            </p>
+            <p>
+              Date: { this.state.flight.date }
+            </p>
+            <p>
+              Origin: { this.state.flight.origin }
+            </p>
+            <p>
+              Destination: { this.state.flight.destination }
+            </p>
 
-          <Reservation data={ this.state }/>
-
-        <Link to="/">Back to Home</Link>
+            <Reservation data={ this.state }/>
+        </div>
       </div>
     );
   }

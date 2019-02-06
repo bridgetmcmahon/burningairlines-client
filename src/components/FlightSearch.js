@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Home from './Home';
 import axios from 'axios';
+import Navigation from './Navigation';
 
 const SERVER_URL = "http://localhost:3000/flights.json"
 
@@ -88,10 +89,12 @@ class Flights extends Component {
 
   render() {
     return (
-      <div className="container">
-        <FlightsForm onSubmit={ this.fetchFlights }/>
-        <FlightsResults flights={ this.state.flights }/>
-        <Link to="/">Back to Home</Link>
+      <div>
+        <Navigation />
+        <div className="container">
+          <FlightsForm onSubmit={ this.fetchFlights }/>
+          <FlightsResults flights={ this.state.flights }/>
+        </div>
       </div>
     )
   }

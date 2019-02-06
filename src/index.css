@@ -18,3 +18,24 @@ code {
   max-width: 960px;
   margin: 0 auto;
 }
+
+.navigation {
+  background-color: black;
+  color: white;
+  line-height: 80px;
+}
+
+nav {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.navigation span {
+  color: white;
+  padding-right: 30px;
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
+}
