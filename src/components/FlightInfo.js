@@ -73,15 +73,14 @@ class FlightInfo extends Component {
 
           <div>
             { this.state.totalRows.map( (rowNo) =>
-              <Row />
+              <div>
+                <Row />
+              </div>
             )}
           </div>
 
         <Link to="/">Back to Home</Link>
       </div>
-
-
-
     );
   }
 }
@@ -89,12 +88,11 @@ class FlightInfo extends Component {
 class Row extends Component {
   render() {
     return (
-      <div>
+      <span>
         Seat
-      </div>
+      </span>
     );
   }
 }
-
 
 export default FlightInfo;
