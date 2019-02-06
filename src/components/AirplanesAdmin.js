@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+const SERVER_URL = "http://localhost:3000/airplanes.json"
 
 class AirplanesAdmin extends Component {
   render() {
@@ -15,10 +18,10 @@ class AirplanesAdmin extends Component {
           <input type="submit" value="Add Airplane" />
         </form>
 
-        <Link to="/">Back to Home!</Link>
+        <Link to="/">Back to Home</Link>
       </div>
     )
   }
 }
 
-export default Airplanes Admin
+export default AirplanesAdmin;
