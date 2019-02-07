@@ -51,8 +51,8 @@ class BookingForm extends Component {
       <div className="booking">
         <form onSubmit={ this._handleSubmit }>
           <label>User:</label>
-          <select>
-            { this.state.users.map( (user) => <option value={user.id} onChange={this._handleChange}>{ user.name }</option>) }
+          <select onChange={this._handleChange}>
+            { this.state.users.map( (user) => <option value={user.id} >{ user.name }</option>) }
           </select>
 
           <input type="text" placeholder="25C" onInput={ this._handleInput } />
