@@ -17,8 +17,10 @@ class FlightInfo extends Component {
       airplane: {},
       rows: 0,
       columns: 0,
-      reservations: {}
+      reservations: []
     }
+    this.saveReservation = this.saveReservation.bind(this);
+
   }
 
   componentDidMount() {
@@ -53,10 +55,10 @@ class FlightInfo extends Component {
     });
   }
 
-  saveReservation(user_id, plane_id, seat) {
-    axios.post(RESERVATION_URL, {user_id, plane_id, seat}).then() (results => {
+  saveReservation(data) {
+    axios.post(RESERVATION_URL, {user_id: data.user_id, flight_id: this.state.flight.id, seat: data.seat, reserved: true}).then( (results => {
       this.setState({ reservations: [...this.state.reservations, results.data]})
-    });
+    }));
   }
 
   render() {
@@ -80,7 +82,7 @@ class FlightInfo extends Component {
 
             <Reservation data={ this.state }/>
 
-            <BookingForm onSubmit={ this.saveReservation }/>
+            <BookingForm data={ this.state.flight.id }onSubmit={ this.saveReservation }/>
         </div>
       </div>
     );
@@ -94,17 +96,17 @@ class Reservation extends Component {
     let reservedSeats = [];
     let table = [];
 
-    Array.from(d.reservations).forEach(function(r) {reservedSeats.push(r.seat);});
+    d.reservations.forEach(function(r) {reservedSeats.push(r.seat);});
 
    for (let i = 1; i <= d.rows; i++) {
      let children = [];
      for (let j = 1; j <= d.columns; j++) {
        let seat = i +  String.fromCharCode(64 + j);
        if(reservedSeats.indexOf(seat) > -1) {
-         children.push(<td>{`${seat}`} </td>);
+         children.push(<td>&nbsp; &nbsp;{`${seat}`} </td>);
        }
        else {
-         children.push(<td> |___| &nbsp; &nbsp;</td>);
+         children.push(<td>&nbsp; |___|  &nbsp;</td>);
        }
      }
 

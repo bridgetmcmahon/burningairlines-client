@@ -8,11 +8,15 @@ class BookingForm extends Component {
     super();
     this.state = {
       users: [],
-      content: '',
+      seat: '',
+      user_id: 0,
+      flight_id: 0,
+      reserved: true
     }
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleInput = this._handleInput.bind(this);
+    this._handleChange = this._handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -30,12 +34,16 @@ class BookingForm extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit( this.state.content );
+    this.props.onSubmit( this.state );
 
   }
 
   _handleInput(e) {
-    this.setState({ content: e.target.value });
+    this.setState({ seat : e.target.value });
+  }
+
+  _handleChange(e) {
+    this.setState({ user_id : e.target.value });
   }
 
   render() {
@@ -44,7 +52,7 @@ class BookingForm extends Component {
         <form onSubmit={ this._handleSubmit }>
           <label>User:</label>
           <select>
-            { this.state.users.map( (user) => <option>{ user.name }</option>) }
+            { this.state.users.map( (user) => <option value={user.id} onChange={this._handleChange}>{ user.name }</option>) }
           </select>
 
           <input type="text" placeholder="25C" onInput={ this._handleInput } />
