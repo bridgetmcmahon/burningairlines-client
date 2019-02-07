@@ -8,33 +8,46 @@ class BookingForm extends Component {
     super();
     this.state = {
       users: [],
+      content: '',
     }
+
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleInput = this._handleInput.bind(this);
   }
 
   componentDidMount() {
     axios.get(USERS_URL).then( (results) => {
-      let usernames = []
+      let users = []
       console.log(results);
 
       for (var i = 0; i < results.data.length; i++) {
         let user = results.data[i];
-        usernames.push(user.name);
-        this.setState({ users: usernames })
+        users.push(user);
+        this.setState({ users: users, user_id: users.id })
       }
-      console.log(usernames);
     });
+  }
+
+  _handleSubmit(e) {
+    e.preventDefault();
+    this.props.onSubmit( this.state.content );
+
+  }
+
+  _handleInput(e) {
+    this.setState({ content: e.target.value });
   }
 
   render() {
     return (
       <div className="booking">
-        <form>
+        <form onSubmit={ this._handleSubmit }>
           <label>User:</label>
           <select>
-            { this.state.users.map( (user) => <option>{ user }</option>) }
+            { this.state.users.map( (user) => <option>{ user.name }</option>) }
           </select>
 
-          <input type="text" placeholder="25C"/>
+          <input type="text" placeholder="25C" onInput={ this._handleInput } />
           <input type="submit" value="Book Flight" />
         </form>
       </div>
