@@ -10,10 +10,11 @@
        <div>
          <Navigation />
          <div className="container">
-          <h1>Welcome to Burning Airlines</h1>
-          <p>
+         <div class="fire">Burning Airlines</div>
+<link async href="http://fonts.googleapis.com/css?family=Anton" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+          <h3>
             <Link to="/search">Search</Link> for a flight.
-          </p>
+          </h3>
           <p>
             Have an account? Sign in:
           </p>
