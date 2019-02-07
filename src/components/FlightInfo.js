@@ -5,6 +5,9 @@ import '../App.css'
 import Navigation from './Navigation';
 import BookingForm from './BookingForm';
 
+const RESERVATION_URL = `http://localhost:3000/reservations.json`
+
+
 class FlightInfo extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +42,6 @@ class FlightInfo extends Component {
           columns: plane.columns
         });
 
-        const RESERVATION_URL = `http://localhost:3000/reservations.json`
         axios.get(RESERVATION_URL).then( (results) => {
 
           let reservations = results.data.filter(r => r.flight_id == id);
@@ -48,6 +50,12 @@ class FlightInfo extends Component {
           });
         });
       });
+    });
+  }
+
+  saveReservation(user_id, plane_id, seat) {
+    axios.post(RESERVATION_URL, {user_id, plane_id, seat}).then() (results => {
+      this.setState({ reservations: [...this.state.reservations, results.data]})
     });
   }
 
@@ -72,7 +80,7 @@ class FlightInfo extends Component {
 
             <Reservation data={ this.state }/>
 
-            <BookingForm />
+            <BookingForm onSubmit={ this.saveReservation }/>
         </div>
       </div>
     );
