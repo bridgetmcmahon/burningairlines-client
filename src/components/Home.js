@@ -7,6 +7,8 @@
  class Home extends Component {
    render() {
      return (
+
+
        <div>
          <Navigation />
          <div className="container">
@@ -20,6 +22,7 @@
           </p>
           <SignInForm />
          </div>
+
        </div>
      );
    }
